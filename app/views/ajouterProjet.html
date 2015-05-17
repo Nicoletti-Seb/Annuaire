@@ -1,0 +1,23 @@
+<div ng-show="errorHttp == true" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Warning!</strong> Il y a une erreur http...
+</div>
+
+<div ng-show="success == true" class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!!</strong> {{msgSuccess}}
+</div>
+
+<h1>Ajouter un projet</h1>
+
+<div class="cadre">
+	<form ng-submit="add()">
+		<h4>Titre</h4>
+		<input class="input_form" type="text" ng-model="titre" required/>
+		<h4>Année</h4>
+		<input class="input_form" type="number" ng-model="annee" required/>
+		<h4>Description</h4>
+		<textarea class="description_area" ng-model="description" />
+		<button type="submit">Envoyer</button>
+	</form>
+</div>

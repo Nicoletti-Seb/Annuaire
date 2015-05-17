@@ -1,0 +1,79 @@
+<div ng-show="errorHttp == true" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Warning!</strong> Il y a une erreur http...
+</div>
+
+<div ng-show="success == true" class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!!</strong> {{msgSuccess}}
+</div>
+
+<h1>Associer un utilisateur à un projet</h1>
+
+<h4>Role : </h4>
+<input type="text" ng-model="nameRole" required/>
+<button ng-click="associateUserToProject()">Associer</button>
+
+<!--Rechercher un utilisateur -->
+<div class="block_Ass" >
+	<h3>Rechercher des utilisateur</h3>
+	<input type="text" ng-model="userFilter"/>
+	<h3>Liste des utilisateurs:</h3>
+	<div class="rechercher"
+		ng-repeat="user in users | filter:userFilter"
+		ng-click="changeCurrentUser(user)">
+		
+		<div 
+			class="description"
+			ng-show="currentUser == user" 
+			ng-style="{'background-color':'greenyellow'}">
+			<h5><b>Nom:</b>{{user.name}}</h5>
+			<h5><b>Prénom:</b>{{user.surname}}</h5>
+			<h5><b>Email:</b>{{user.email}}</h5>
+			<h5><b>Website:</b>{{user.website}} </h5>
+			<h5><b>Date de création:</b>{{user.createdAt}}</h5>
+			<h5><b>Date de mise à jour:</b>{{user.updatedAt}}</h5>
+		</div>
+		<div 
+			class="description"
+			ng-show="currentUser == null || currentUser != user">
+			<h5><b>Nom:</b>{{user.name}}</h5>
+			<h5><b>Prénom:</b>{{user.surname}}</h5>
+			<h5><b>Email:</b>{{user.email}}</h5>
+			<h5><b>Website:</b>{{user.website}} </h5>
+			<h5><b>Date de création:</b>{{user.createdAt}}</h5>
+			<h5><b>Date de mise à jour:</b>{{user.updatedAt}}</h5>
+		</div>
+	</div>
+</div>
+
+
+<!--Rechercher un projet -->
+<div class="block_Ass" >
+	<h3>Rechercher des projets</h3>
+	<input type="text" ng-model="projectFilter"/>
+
+	<h3>Liste des projets:</h3>
+	<div class="rechercher"
+		ng-repeat="project in projects | filter:projectFilter"
+		ng-click="changeCurrentProject(project)">
+		
+		<div 
+			class="description descProjet"
+			ng-show="currentProject == project" 
+			ng-style="{'background-color':'greenyellow'}">
+			<h5><b>Titre:</b>{{project.title}}</h5>
+			<h5><b>Année:</b>{{project.year}}</h5>
+			<h5><b>Descriptions:</b>{{project.description}}</h5>
+		</div>
+		<div 
+			class="description descProjet"
+			ng-show="currentProject == null || currentProject != project">
+			<h5><b>Titre:</b>{{project.title}}</h5>
+			<h5><b>Année:</b>{{project.year}}</h5>
+			<h5><b>Descriptions:</b>{{project.description}}</h5>
+		</div>
+	</div>
+</div>
+
+

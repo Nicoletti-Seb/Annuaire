@@ -1,0 +1,67 @@
+<div ng-show="errorHttp == true" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Warning!</strong> Il y a une erreur http...
+</div>
+
+<div ng-show="success == true" class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!!</strong> {{msgSuccess}}
+</div>
+
+<div ng-switch="state">
+	<!-- Rechercher un projet -->
+	<div ng-switch-when="search">
+		<h3>Rechercher des projets</h3>
+		<input type="text" ng-model="valR"/>
+
+		<h3>Liste des Projets:</h3>
+		<div  class="rechercher"
+			ng-repeat="project in projects | filter:valR"
+			ng-click="changeViewToModify(project)"> 
+
+			<div class="description descProjet">
+				<div class="top">
+					<div class="remove" ng-click="deleteProject(project); $event.stopPropagation();">
+						<img src="images/delete.png"/>
+					</div>
+				</div>
+				<h5><b>Titre:</b>{{project.title}}</h5>
+				<h5><b>Année:</b>{{project.year}}</h5>
+				<h5><b>Descriptions:</b>{{project.description}}</h5>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modifier un projet -->
+	<div ng-switch-when="modify">
+		<img class="precedent" src="images/precedent.png" ng-click="changeViewToSearch()" />
+		<h1>Modifier un projet</h1>
+
+		<div class="cadre">
+			<form ng-submit="updateProject(currentProject)">
+
+				<h4>Titre</h4>
+				<input class="input_form" type="text" ng-model="currentProject.title" required/>
+				<h4>Année</h4>
+				<input class="input_form" type="number" ng-model="currentProject.year" required/>
+				<h4>Description</h4>
+				<textarea class="description_area" ng-model="currentProject.description" />
+
+				<button type="submit">Mettre à jour</button>
+			</form>
+		</div>
+
+		<h2>Projets</h2>
+		<div class="rechercher" ng-repeat="user in currentProject.users">
+			<div class="description descProjet">
+				<div class="top">
+					<div class="remove" ng-click="deleteRelationUP(user, currentProject)" >
+						<img src="images/delete.png"/>
+					</div>
+				</div>
+				<h5><b>Utilisateur :</b>{{user.name}} {{user.surname}}</h5>
+				<h5><b>Role :</b> {{user.role}}</h5>
+			</div>
+		</div>
+	</div>
+</div>

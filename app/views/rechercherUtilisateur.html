@@ -1,0 +1,74 @@
+<div ng-show="errorHttp == true" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Warning!</strong> Il y a une erreur http...
+</div>
+
+<div ng-show="success == true" class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!!</strong> {{msgSuccess}}
+</div>
+
+<div ng-switch="state">
+	<!--Rechercher un utilisateur -->
+	<div ng-switch-when="search">
+		<h3>Rechercher des utilisateur</h3>
+		<input type="text" ng-model="valR"/>
+
+		<h3>Liste des utilisateurs:</h3>
+		<div class="rechercher"
+			ng-repeat="user in users | filter:valR"
+			ng-click="changeViewToModify(user)"> 
+
+			<div class="description" >
+				<div class="top">
+					<div class="remove" ng-click="deleteUser(user); $event.stopPropagation();">
+						<img src="images/delete.png"/>
+					</div>
+				</div>
+				<h5><b>Nom:</b>{{user.name}}</h5>
+				<h5><b>Prénom:</b>{{user.surname}}</h5>
+				<h5><b>Email:</b>{{user.email}}</h5>
+				<h5><b>Website:</b>{{user.website}} </h5>
+				<h5><b>Date de création:</b>{{user.createdAt}}</h5>
+				<h5><b>Date de mise à jour:</b>{{user.updatedAt}}</h5>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modifier un utilisateur -->
+	<div ng-switch-when="modify">
+
+		<img class="precedent" src="images/precedent.png" ng-click="changeViewToSearch()" />
+
+		<h1>Modifier un utilisateur</h1>
+
+		<div class="cadre">
+			<form ng-submit="updateUser(currentUser)">
+				<h4>Nom</h4>
+				<input class="input_form" type="text" ng-model="currentUser.name"  required/>
+				<h4>Prénom</h4>
+				<input class="input_form" type="text" ng-model="currentUser.surname"  required/>
+				<h4>Email</h4>
+				<input class="input_form" type="email" ng-model="currentUser.email" value="" />
+				<h4>Website</h4>
+				<input class="input_form" type="text" ng-model="currentUser.website" value="" />
+
+				<button type="submit">Mettre a jour</button>
+			</form>
+		</div>
+
+		<h2>Projets</h2>
+		<div class="rechercher" ng-repeat="project in currentUser.projects">
+			<div class="description descProjet">
+				<div class="top">
+						<div class="remove" ng-click="deleteRelationUP(currentUser, project)" >
+							<img src="images/delete.png"/>
+						</div>
+				</div>
+				<h5><b>Nom :</b> {{project.title}}</h5>
+				<h5><b>Role:</b> {{project.role}}</h5>
+				<h5><b>Description:</b> {{project.description}}</h5>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,51 @@
+
+.rechercher {
+	font-family: initial;
+	display: inline-table;
+}
+
+.rechercher .description{
+	
+	margin: 5px;
+	background-color: darkseagreen;
+	border-radius: 5%;
+	padding: 5px;
+	width: 300px;
+  	height: 200px;
+  	text-overflow: ellipsis;
+}
+
+.description .top{
+	width: 100%;
+	height: 20px;
+	margin:0%;
+}
+
+.description .top .remove{
+	position: relative;
+	display: inline-flex;
+	left: 90%;
+	width:20px;
+	height: 20px;
+	background-color: green;
+	border-radius: 50%;
+}
+
+.descProjet{
+	width: 200px !important;
+	height: 150px !important;
+}
+.remove img{
+	width: 100%;
+	height: 100%;
+}
+
+.rechercher .description:hover { 
+    background-color: greenyellow;
+}
+
+.precedent{
+	width: 80px;
+	height: 80px;
+}
+
